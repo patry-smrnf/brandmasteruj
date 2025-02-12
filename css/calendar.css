@@ -1,0 +1,54 @@
+
+.calendar_data_box
+{
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 25px;
+    padding-bottom: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    margin-top: 15px;
+}
+
+.calendar_data_box h2
+{
+    font-size: 13px;
+    font-weight:bold;
+    color: white;
+    padding-top: 10px;
+    padding-left: 20px;
+    text-align: left;
+    margin: 0px;
+}
+.calendar_data_box h1
+{
+    margin: 0px;
+    padding-left: 20px;
+    text-align: left;
+    font-size: 18px;
+    font-weight:normal;
+    color: white;
+}
+
+.data_box_active 
+{
+    background: rgba(177, 135, 255, 0.267);
+}
+
+.data_box_active h2
+{
+    font-size: 18px;
+    font-weight:bold;
+    color: white;
+    padding-top: 15px;
+    padding-left: 20px;
+    text-align: left;
+    margin: 0px;
+}
+.data_box_active h1
+{
+    margin: 0px;
+    padding-left: 20px;
+    text-align: left;
+    font-size: 23px;
+    font-weight:normal;
+    color: white;
+}

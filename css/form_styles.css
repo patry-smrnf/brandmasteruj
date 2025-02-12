@@ -1,0 +1,52 @@
+.field input 
+{
+    margin-top: 10px;
+    margin-bottom: 0px;
+    font-size: 16px;
+    line-height: 28px;
+    padding: 8px 16px;
+    border-radius: 10px;
+    width: 50%;
+    min-height: 44px;
+    border: none;
+    background: rgba(255, 255, 255, 0.521);
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    outline: none; /* Removes default focus border */
+    transition: all 250ms;
+}
+
+input[type="submit"] 
+{
+    margin-top: 0px;
+    margin-bottom: 0px;
+    background: rgba(255, 255, 255, 0.11);
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 250ms;
+}
+
+input[type="submit"]:hover
+{
+    background: rgba(255, 255, 255, 0.144);
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.field input:focus 
+{
+    outline: none; /* Removes default border */
+    box-shadow: 0 4px 10px rgba(142, 68, 173, 0.5); /* Adds a soft glow */
+}
+
+.padding-bottom--24 
+{
+    padding-bottom: 24px;
+}
