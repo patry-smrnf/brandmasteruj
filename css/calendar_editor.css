@@ -1,19 +1,35 @@
-.actual_day_editor
+.calendar_picked_day
 {
-    background: rgba(0, 0, 0, 0.2);
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 20px;
+    font-weight:lighter;
+    color: white;
+    text-align: center;
+
+    max-height: 500px;
+    overflow-y: auto;
+    flex: 1; /* Allow content to grow equally */
+    margin: 15px; /* Spacing between content blocks */
+    padding: 20px; /* Padding inside the content */
+
+    background: rgba(192, 192, 192, 0.2);
     border-radius: 25px;
-    padding-bottom: 10px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    margin-top: 15px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: all 0.3s ease-in-out;
 }
 .calendar_picker_editor
 {
     background: rgba(0, 0, 0, 0.2);
     border-radius: 25px;
-    padding-bottom: 10px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     margin-top: 15px;
     min-width: 700px;
+    display: flex;  /* Enables flexbox */
+    flex-direction: row; /* Aligns columns side by side */
+    justify-content: center; /* Centers them horizontally */
+    align-items: center; 
 }
 
 
@@ -22,11 +38,24 @@
 	 font-weight: 800;
 	 margin: 1rem 0 0;
 }
- ul {
-	 display: grid;
-	 grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-	 flex-wrap: wrap;
-	 list-style: none;
+ul {
+    display: grid;
+	grid-template-columns: repeat(3, 1fr); /* At least 3 items per row */
+    justify-content: center; /* Centers the grid */
+    align-items: center;
+    gap: 0.5rem; /* Space between items */
+    padding: 0;
+    margin: 0 auto;
+    max-width: 100%; /* Allows full-width responsiveness */
+}
+
+/* Ensure a minimum of 3 items per row on larger screens */
+@media (min-width: 600px) {
+    ul {
+		grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr)); /* Adjusts dynamically */
+
+        max-width: 40rem; /* Prevents stretching too much */
+    }
 }
  ul li {
 	 display: flex;
@@ -44,11 +73,9 @@
 	 backdrop-filter: blur(4px);
 	 -webkit-backdrop-filter: blur(4px);
 	 border-radius: 10px;
-	 border: 1px solid rgba(255, 255, 255, 0.18);
 }
  ul li time {
 	 font-size: 2rem;
-	 margin: 0 0 1rem 0;
 	 font-weight: 500;
 }
  ul .today {
