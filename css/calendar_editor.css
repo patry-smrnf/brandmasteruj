@@ -21,7 +21,11 @@
     -webkit-backdrop-filter: blur(12px);
     transition: all 0.3s ease-in-out;
 }
-
+.calendar_picked_day:hover
+{
+    background: rgba(51, 51, 51, 0.2);
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.158);
+}
 .calendar_picked_day_title
 {
     padding-bottom: 10px;
@@ -45,6 +49,12 @@
     flex-direction: row; /* Aligns columns side by side */
     justify-content: center; /* Centers them horizontally */
     align-items: center; 
+    transition: all 0.3s ease-in-out;
+}
+.calendar_picker_editor:hover
+{
+    background: rgba(51, 51, 51, 0.2);
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.158);
 }
  h1 {
 	 font-weight: 800;
@@ -73,10 +83,13 @@ ul {
 	 height: 7rem;
 	 flex-flow: column;
 	 border-radius: 0.2rem;
-	 padding: 1rem;
+	 padding: 0.5rem;
+     color: whitesmoke;
+     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+     font-weight:lighter;
 	 font-size: 0.8rem;
 	 box-sizing: border-box;
-	 background: rgba(255, 255, 255, 0.25);
+	 background: rgba(0, 0, 0, 0.25);
 	 box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
 	 backdrop-filter: blur(4px);
 	 -webkit-backdrop-filter: blur(4px);
@@ -85,12 +98,11 @@ ul {
 }
 
 ul li:hover {
-    background: rgba(255, 255, 255, 0.25);
+    background: rgba(97, 97, 97, 0.25);
     box-shadow: 0 8px 32px 0 rgba(85, 93, 204, 0.37);
 }
  ul li time {
-	 font-size: 2rem;
-	 font-weight: 500;
+    font-size: 2rem;
 }
  ul .today {
 	 background: #fff 70;
