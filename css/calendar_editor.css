@@ -62,7 +62,7 @@
 }
 ul {
     display: grid;
-	grid-template-columns: repeat(2, 1fr);
+	grid-template-columns: 1fr 1fr 1fr 1fr;
     justify-content: center; /* Centers the grid */
     align-items: center;
     gap: 1rem; /* Space between items */
@@ -73,7 +73,7 @@ ul {
 @media (min-width: 600px) {
     ul {
         gap: 2rem; /* Space between items */
-		grid-template-columns: repeat(auto-fit, minmax(8rem, 2fr)); /* Adjusts dynamically */
+		grid-template-columns: 1fr 1fr 1fr 1fr; /* Adjusts dynamically */
         max-width: 40rem; /* Prevents stretching too much */
     }
 }
