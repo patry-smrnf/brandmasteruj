@@ -8,7 +8,43 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
     if (isset($_POST["login"]) && !empty($_POST["login"])) 
     {
         $login = validate_creds($_POST["login"]);
+        try
+        {
+            $sql = "SELECT * FROM users WHERE login_user = :login_user";
+            $stmt = $pdo->prepare($sql);
+            $stmt -> bindParam(':login_user', $login);
+            $stmt -> execute();
 
+            if ($stmt->rowCount() === 1) 
+            {
+                $row = $stmt->fetch(PDO::FETCH_ASSOC);
+                if ($row["login_user"] === $login)
+                {
+                    if(auth_user($login))
+                    {
+                        header("Location: login.php?error=Blad w tworzeniu tokena");
+                        exit();
+                    }
+                    header("Location: index.php");
+                    exit();
+                }
+            }
+            else
+            {
+                header("Location: login.php?error=Bledny Login");
+                exit();
+            }
+        }
+        catch(Exception $e)
+        {
+            header("Location: login.php?error=$e");
+            exit();
+        }
+    }
+    else
+    {
+        header("Location: login.php?error=Pusty login");
+        exit();
     }
 
 }
@@ -38,10 +74,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
                                 <input type="submit" name="submit" value="Zaloguj">
                             </div>
                         </form>
+                        <?php if(isset($_GET['error'])) 
+                        {
+                             ?>
+                        <a class="error_text"><?php echo $_GET['error']?></a>
+                        <?php }?>
                     </div>
                     <div class="content">
                         <h1>Stworz nowy login:</h1>
-                        <a class="basic_button_a" href="register.html"> 
+                        <a class="basic_button_a" href="register.php"> 
                             Kliknij Tutaj
                         </a>
                     </div>

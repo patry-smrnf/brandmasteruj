@@ -1,3 +1,13 @@
+<?php
+    include('scripts/php/database.php');
+    include('scripts/php/security.php');
+    include('scripts/php/config.php');
+
+    is_logged();
+
+
+?>
+
 <html>
     <head>
         <meta charset="UTF-8">
@@ -8,12 +18,12 @@
     </head>
     <body>
         <div class="header_top">
-            <a href="index.html">
+            <a href="index.php">
                 <button class="header_button active_button">
                     <img src="images/home-icon-silhouette.svg" alt="Location">
                 </button>
             </a>
-            <a href="calendar.html">
+            <a href="calendar.php">
                 <button class="header_button">
                     <img src="images/calendar-symbol.svg" alt="Location">
                 </button>

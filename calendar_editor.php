@@ -1,3 +1,31 @@
+<?php
+    include('scripts/php/database.php');
+    include('scripts/php/security.php');
+    include('scripts/php/config.php');
+
+    is_logged();
+
+    $year = date('Y');
+    $month = date('m');
+
+    $days_in_month = date('t', strtotime("$year-$month-01"));
+
+    echo $days_in_month;
+
+    //wyliczenie wszystkich dni w tym miesiacu
+    $dates = [];
+    for ($day = 1; $day <= $days_in_month; $day++) 
+    {
+        $dates[] = sprintf('%04d-%02d-%02d', $year, $month, $day);
+    }
+
+    //dzisiaj
+    $today = date('Y-m-d');
+
+    
+
+?>
+
 <html>
     <head>
         <meta charset="UTF-8">
@@ -10,12 +38,12 @@
     </head>
     <body>
         <div class="header_top">
-            <a href="index.html">
+            <a href="index.php">
                 <button class="header_button active_button">
                     <img src="images/home-icon-silhouette.svg" alt="Location">
                 </button>
             </a>
-            <a href="calendar.html">
+            <a href="calendar.php">
                 <button class="header_button">
                     <img src="images/calendar-symbol.svg" alt="Location">
                 </button>

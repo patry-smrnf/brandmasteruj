@@ -240,3 +240,22 @@ hr.solid
         flex: none; 
     }
 }
+
+.error_text
+{
+    margin: 0px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 25px;
+    font-weight:normal;
+    text-shadow: rgba(255, 0, 0, 0.59) 0px 0px 20px;
+    color: rgb(255, 0, 132);
+    transition: all 250ms;
+}
+
+
+.error_text:hover
+{
+    text-shadow: rgba(255, 0, 0, 0.59) 0px 0px 29px;
+    font-weight:bold;
+
+}
