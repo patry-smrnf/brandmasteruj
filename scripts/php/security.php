@@ -26,8 +26,37 @@ function auth_user($login)
 function is_logged()
 {
     include('config.php');
+    include('database.php');
+    require_once('user_session.php');
+
     if(isset($_COOKIE[$auth_cookie_name]) && !empty($_COOKIE[$auth_cookie_name] && validate_token()))
     {
+        $cookie = validate_creds($_COOKIE[$auth_cookie_name]);
+        $sql = "SELECT * FROM auth WHERE token = :token";
+        $stmt = $pdo->prepare($sql);
+        $stmt -> bindParam(':token', $cookie);
+        $stmt -> execute();
+        
+        if ($stmt->rowCount() === 1) 
+        {
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            if ($row["token"] === $cookie)
+            {
+                $user_login = $row['login'];
+
+                $sql = "SELECT * FROM users WHERE login_user = :login_user";
+                $stmt = $pdo->prepare($sql);
+                $stmt -> bindParam(':login_user', $user_login);
+                $stmt -> execute();
+
+                $row = $stmt->fetch(PDO::FETCH_ASSOC);
+                
+                $user_id = $row['id_user'];
+
+
+                UserSession::init($user_id, $user_login, $cookie);
+            }
+        }
         return true;
     }
     else

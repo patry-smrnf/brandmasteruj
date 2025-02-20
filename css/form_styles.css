@@ -12,8 +12,6 @@
     background: rgba(255, 255, 255, 0.521);
     border-radius: 15px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
     outline: none; /* Removes default focus border */
     transition: all 250ms;
 }
@@ -25,8 +23,6 @@ input[type="submit"]
     background: rgba(255, 255, 255, 0.11);
     border-radius: 15px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
     color: #fff;
     font-weight: 600;
     cursor: pointer;
@@ -66,8 +62,7 @@ input[type="submit"]:hover
     font-size: 16px;
     border-radius: 15px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+
     outline: none; /* Removes default focus border */
     transition: all 250ms;
 }
@@ -78,8 +73,7 @@ input[type="submit"]:hover
     background: rgba(255, 255, 255, 0.521);
     border-radius: 15px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+
     outline: none; /* Removes default focus border */
     transition: all 250ms;
 }
@@ -102,8 +96,7 @@ input[type="submit"]:hover
     background: rgba(61, 61, 61, 0.651);
     border-radius: 15px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(1px);
-    -webkit-backdrop-filter: blur(1px);
+
     outline: none; /* Removes default focus border */
     transition: all 250ms;
     margin-bottom: 10px;

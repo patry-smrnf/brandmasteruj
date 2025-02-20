@@ -5,7 +5,32 @@
 
     is_logged();
 
+    $year = date('Y');
+    $month = date('m');
 
+    $days_in_month = date('t', strtotime("$year-$month-01"));
+
+    //echo $days_in_month;
+
+    //wyliczenie wszystkich dni w tym miesiacu
+    $dates = [];
+    for ($day = 1; $day <= $days_in_month; $day++) 
+    {
+        $dates[] = sprintf('%04d-%02d-%02d', $year, $month, $day);
+    }
+
+    //dzisiaj
+    $today = date('Y-m-d');
+
+    $id_user = UserSession::getUserId();
+
+    $sql = "SELECT * FROM akcje WHERE id_user = :id_user";
+    $stmt = $pdo->prepare($sql);
+    $stmt -> bindParam(':id_user', $id_user);
+    $stmt -> execute();
+
+    //zgranie calej bazy akcji dotyczacej usera
+    $records = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <html>
@@ -37,22 +62,57 @@
         <div class="container">
             <div class="main_body">
                 <div class="column">
+                    <?php 
+                    $preview_adres = "???";
+                    $preview_start_godz = 0;
+                    $preview_end_godz = 0;
+                    $preview_srednia_sprzedaz = 0;
+
+                    $czy_jest_akcja_dzis = false;
+
+                    foreach ($records as $record) 
+                    {
+                        if ($record['data'] === $today) 
+                        {
+                            $id_sklepu = $record['id_sklepu'];
+                            $preview_start_godz = $record['start_godzina'];
+                            $preview_end_godz = $record['koniec_godzina'];
+
+                            $sql = "SELECT * FROM baza_sklepow WHERE id_sklepu = :id_sklepu";
+                            $stmt = $pdo->prepare($sql);
+                            $stmt -> bindParam(':id_sklepu', $id_sklepu);
+                            $stmt -> execute();
+
+                            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                            $preview_adres = $row['adres_sklepu'];
+                            $preview_srednia_sprzedaz = $row['suma_sprzedazy'];
+                            $czy_jest_akcja_dzis = true;
+                            break;
+                        }
+                    }
+                    if($czy_jest_akcja_dzis)
+                    {
+                    
+                    echo '
                     <div class="content">
                         <h1>Twoj punkt dzisiaj:</h1>
                         <div class="calendar_data_box">
                             <h2>Nazwa</h2>
-                            <h1>Swietkorzyska 11</h1>
+                            <h1>'.$preview_adres.'</h1>
                         </div>
                         <h1>Jak tobie poszlo?</h1>
                         <form action="POST">
                             <div class="field padding-bottom--24">
                                 <input type="text" name="sprzedaz">
                             </div>
+                            <input type="hidden" id="data_input" name="date" value="'. $today .'">
                             <div class="field padding-bottom--24">
                                 <input type="submit" name="submit" value="Dodaj">
                             </div>
                         </form>
-                    </div>
+                    </div>';
+                    }?>
                     <div class="content">
                         <h1>Twoj punkt na jutro:</h1>
                         <div class="calendar_data_box">
