@@ -125,15 +125,51 @@
                         </div>
                     </div>
                 </div>
+                <?php
+                    $suma_godzin_przed_dzisiaj = 0;
+                    $suma_godzin_po = 0;
+
+                    foreach($records as $record)
+                    {
+                        if (strtotime($record['data']) < strtotime($today)) //tylko dni po dzisiaj
+                        {
+                            //$suma_godzin_przed_dzisiaj += $record['koniec_godzina'] - $record['start_godzina'];
+                            $start = new DateTime($record['start_godzina']);
+                            $end = new DateTime($record['koniec_godzina']);
+                            $diff = $start->diff($end);
+                            
+                            // Convert the difference to total hours
+                            $totalHours = $diff->h + ($diff->i / 60) + ($diff->s / 3600);
+                            
+                            $suma_godzin_przed_dzisiaj += $totalHours;
+                            //$suma_godzin_przed_dzisiaj += $time2->diff($time1);
+
+                        }
+                        if (strtotime($record['data']) >= strtotime($today)) //tylko dni po dzisiaj
+                        {
+                            $start = new DateTime($record['start_godzina']);
+                            $end = new DateTime($record['koniec_godzina']);
+                            $diff = $start->diff($end);
+                            
+                            // Convert the difference to total hours
+                            $totalHours = $diff->h + ($diff->i / 60) + ($diff->s / 3600);
+                            
+                            $suma_godzin_po += $totalHours;
+                            
+                            //$suma_godzin_po += $time2->diff($time1);
+                        }
+
+                    }
+                ?>
                 <div class="column">
                     <div class="content">
                         <h1>Ilosc godzin w tym miesiacu</h1>
-                        <a class="text_important">7</a>
+                        <a class="text_important"><?php echo $suma_godzin_przed_dzisiaj; ?></a>
                         <h1>Twoje sprzedaze w tym miesiacu</h1>
                         <a class="text_important">11</a>
                         <hr class="solid">
                         <h1>Ilosc zadeklerowanych godzin</h1>
-                        <a class="text_important">71</a>
+                        <a class="text_important"><?php echo intval($suma_godzin_przed_dzisiaj + $suma_godzin_po);?></a>
                         <h1>Twoja efektywnosc</h1>
                         <a class="text_important">2.1</a>
                     </div>

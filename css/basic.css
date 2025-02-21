@@ -8,8 +8,7 @@ body
 {
   margin: 0;
   padding: 0;
-
-  background-color: #e8e8e8;
+  background-color: #1e2025;
   /*background: linear-gradient(31deg, rgba(163,10,239,1) 36%, rgba(66,111,255,1) 100%);*/
 }
 
@@ -17,7 +16,7 @@ body
 {
   height: 10%;
 
-  background-color: #ededed;
+  background-color: #1a1c21;
   border-radius: 0px 0px 16px 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   transition: all 250ms;
@@ -29,13 +28,12 @@ body
 
 .header_top:hover
 {
-  background-color: #ededed;
   box-shadow: 0 0px 40px rgba(0, 0, 0, 0.164);
 }
 
 .header_button
 {
-  background-color: #282828;
+  background-color: #16181c;
   border-radius: 0px 0px 16px 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   
@@ -81,7 +79,7 @@ body
   justify-content: center; /* Centers them horizontally */
   align-items: center; /* Aligns items vertically */
 
-  background-color: #f1f1f1;
+  background-color: #1a1c21;
   border-radius: 35px;
   width: 90%;
   height: 85%;
@@ -92,8 +90,7 @@ body
 
 .main_body:hover
 {
-  background-color: #ededed;
-  box-shadow: 0 0px 40px rgba(0, 0, 0, 0.11);
+  box-shadow: 0 0px 30px #0505054a;
 }
 
 .column {
@@ -109,7 +106,6 @@ body
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: 15px;
   font-weight:lighter;
-  color: white;
   text-align: center;
 
   max-height: 500px;
@@ -117,8 +113,8 @@ body
   flex: 1; /* Allow content to grow equally */
   margin: 15px; /* Spacing between content blocks */
   padding: 20px; /* Padding inside the content */
-
-  background-color: #282828;
+  color: #fefefe;
+  background-color: #16181c;
 
   border-radius: 25px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
@@ -127,16 +123,14 @@ body
 
 .content:hover
 {
-  background-color: #252525;
   box-shadow: 0 4px 25px rgba(0, 0, 0, 0.158);
-
 }
 
 .content h1
 {
   font-size: 20px;
   font-weight:bold;
-  color: white;
+  color: #fefefe;
   margin: 8px;
 }
 
@@ -229,23 +223,3 @@ text-shadow:0px 1px 0px #000000;
       flex: none; 
   }
 }
-
-  
-  /* Error text */
-  .error_text {
-    margin: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 25px;
-    font-weight: normal;
-    text-shadow: 0 0 20px rgba(255, 0, 0, 0.59);
-    color: rgb(255, 0, 132);
-    -webkit-transition: all 250ms;
-       -moz-transition: all 250ms;
-         -o-transition: all 250ms;
-            transition: all 250ms;
-  }
-  
-  .error_text:hover {
-    text-shadow: 0 0 29px rgba(255, 0, 0, 0.59);
-    font-weight: bold;
-  }

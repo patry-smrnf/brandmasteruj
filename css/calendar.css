@@ -1,54 +1,117 @@
-
-.calendar_data_box
+.field input 
 {
-    background-color: #111111;
-    border-radius: 25px;
-    padding-bottom: 10px;
+    margin-top: 10px;
+    margin-bottom: 0px;
+    font-size: 16px;
+    line-height: 28px;
+    padding: 8px 16px;
+    border-radius: 10px;
+    width: 50%;
+    min-height: 44px;
+    border: none;
+    background: rgba(255, 255, 255, 0.521);
+    border-radius: 15px;
+    font-weight:bold;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    margin-top: 15px;
+    outline: none; /* Removes default focus border */
+    transition: all 250ms;
 }
 
-.calendar_data_box h2
+input[type="submit"] 
 {
-    font-size: 10px;
-    font-weight:bold;
-    color: white;
-    padding-top: 10px;
-    padding-left: 20px;
-    text-align: left;
-    margin: 0px;
-}
-.calendar_data_box h1
-{
-    margin: 0px;
-    padding-left: 20px;
-    text-align: left;
-    font-size: 13px;
-    font-weight:normal;
-    color: white;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    background-color: #16181c;
+    border-radius: 15px;
+    border: 2px solid #f22447;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    color: #f22447;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 250ms;
 }
 
-.data_box_active 
+input[type="submit"]:hover
 {
-    background-color: #1d1c1c;
+    background: #f22447;
+    color: #fefefe;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
-.data_box_active h2
+.field input:focus 
 {
-    font-size: 13px;
-    font-weight:bold;
-    color: white;
-    padding-top: 15px;
-    padding-left: 20px;
-    text-align: left;
-    margin: 0px;
+    outline: none; /* Removes default border */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
-.data_box_active h1
+
+.padding-bottom--24 
 {
-    margin: 0px;
-    padding-left: 20px;
-    text-align: left;
-    font-size: 18px;
-    font-weight:normal;
-    color: white;
+    padding-bottom: 24px;
+}
+
+
+.autocomplete 
+{
+    position: relative;
+    display: inline-block;
+}
+  
+.autocomplete input 
+{
+    border: none;
+    background-color: #111111;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+
+    outline: none; /* Removes default focus border */
+    transition: all 250ms;
+}
+  
+.autocomplete input[type=text] 
+{
+    width: 100%;
+    background: rgba(255, 255, 255, 0.521);
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+
+    outline: none; /* Removes default focus border */
+    transition: all 250ms;
+}
+  
+  
+.autocomplete-items 
+{
+    position: absolute;
+    border-bottom: none;
+    border-top: none;
+    z-index: 99;
+    top: 100%;
+    left: 0;
+    right: 0;
+}
+  
+.autocomplete-items div {
+    padding: 10px;
+    cursor: pointer;
+    background-color: #111111;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+
+    outline: none; /* Removes default focus border */
+    transition: all 250ms;
+    margin-bottom: 10px;
+}
+  
+  /*when hovering an item:*/
+.autocomplete-items div:hover {
+    background-color: #e9e9e9; 
+}
+  
+  /*when navigating through the items using the arrow keys:*/
+.autocomplete-active {
+    background-color: DodgerBlue !important; 
+    color: #ffffff; 
 }

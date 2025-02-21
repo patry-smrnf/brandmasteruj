@@ -69,6 +69,7 @@
         <div class="container">
             <div class="main_body">
                 <div class="calendar_picked_day">
+                    <a id="top"></a>
                     <div class="calendar_picked_day_title" id="picked_day_title">
                         <a id="punkt_data">Dzisiaj</a>
                     </div>
@@ -155,13 +156,13 @@
 
                                 if($date === $today)
                                 {
-                                    echo '<li class="today" id="date_calendar_window" onclick="set_editor(\''. $adres_akcji. '\', \''. $start_akcji .'\', \''. $koniec_akcji.'\', \''. $date .'\')"><time datetime="'.$date.'">'.date('d', strtotime($date)).'</time><a>'.$adres_akcji.'</a> 
+                                    echo '<li href="#top" class="today" id="date_calendar_window" onclick="set_editor(\''. $adres_akcji. '\', \''. $start_akcji .'\', \''. $koniec_akcji.'\', \''. $date .'\')"><time datetime="'.$date.'">'.date('d', strtotime($date)).'</time><a>'.$adres_akcji.'</a> 
                                     <a>'.$start_akcji . '-'.$koniec_akcji .'</a></li>';
 
                                 }
                                 else
                                 {
-                                    echo '<li id="date_calendar_window" onclick="set_editor(\''. $adres_akcji. '\', \''. $start_akcji .'\', \''. $koniec_akcji.'\', \''. $date .'\')"><time datetime="'.$date.'">'.date('d', strtotime($date)).'</time><a>'.$adres_akcji.'</a> 
+                                    echo '<li href="#top" id="date_calendar_window" onclick="set_editor(\''. $adres_akcji. '\', \''. $start_akcji .'\', \''. $koniec_akcji.'\', \''. $date .'\')"><time datetime="'.$date.'">'.date('d', strtotime($date)).'</time><a>'.$adres_akcji.'</a> 
                                     <a>'.$start_akcji . '-'.$koniec_akcji .'</a></li>';
                                 }
                             }

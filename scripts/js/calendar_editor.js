@@ -1,4 +1,5 @@
 function scrollToTop() {
+    console.log("s")
     window.scrollTo({
       top: 0,
       behavior: "smooth" // Enables smooth scrolling
@@ -13,6 +14,8 @@ function formatDate(dateString) {
 
 function set_editor(name, start, end, data)
 {
+  scrollToTop();
+
     var editor_panel_address_input = document.getElementById("myInput");
     var editor_panel_start = document.getElementById("punkt_godzina_start");
     var editor_panel_koniec = document.getElementById("punkt_godzina_koniec");
@@ -27,7 +30,6 @@ function set_editor(name, start, end, data)
     editor_panel_koniec.value = end;
     editor_panel_data_input.value = data;
 
-    scrollToTop();
     editor_panel_data.innerText = formatDate(data);
 
 }
