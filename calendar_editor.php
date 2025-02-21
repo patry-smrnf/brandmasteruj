@@ -68,14 +68,13 @@
         </div>
         <div class="container">
             <div class="main_body">
-                <div class="calendar_picked_day">
-                    <a id="top"></a>
-                    <div class="calendar_picked_day_title" id="picked_day_title">
-                        <a id="punkt_data">Dzisiaj</a>
-                    </div>
-                    <div class="calendar_picked_day_events">
-                    
-                    <?php
+            <div class="column">
+                    <div class="content">
+                        <div class="calendar_picked_day_title" id="picked_day_title">
+                            <a id="punkt_data">Luty 22</a>
+                        </div>
+                        <div class="calendar_picked_day_events">
+                        <?php
                     $preview_adres = "???";
                     $preview_start_godz = 0;
                     $preview_end_godz = 0;
@@ -124,6 +123,16 @@
                         <a class="error_text"><?php echo $_GET['error']?></a>
                         <?php }?>
                         <script src="scripts/js/autocomplete_addresses.js"></script>
+                        </div>
+                    </div>
+                    <div class="content">
+                        <h2>Zapisz kalendarz do icloud</h2>
+                        <a>Tylko dla osob korzystajacych z MacBook lub iPhone</a><br><br>
+                        <form method="POST" action="scripts/php/save_calendar_icloud.php">
+                            <div class="field padding-bottom--24">
+                                <input type="submit" name="submit" value="Zapisz">
+                            </div>
+                        </form>
                     </div>
                 </div>
                 <div class="calendar_picker_editor">

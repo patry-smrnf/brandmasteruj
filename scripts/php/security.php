@@ -39,9 +39,11 @@ function is_logged()
         
         if ($stmt->rowCount() === 1) 
         {
+            //zbiera dane z bazy o id nalezacym do danego token
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
             if ($row["token"] === $cookie)
             {
+                //przypisuje login
                 $user_login = $row['login'];
 
                 $sql = "SELECT * FROM users WHERE login_user = :login_user";
@@ -49,12 +51,25 @@ function is_logged()
                 $stmt -> bindParam(':login_user', $user_login);
                 $stmt -> execute();
 
-                $row = $stmt->fetch(PDO::FETCH_ASSOC);
+                if ($stmt->rowCount() === 1) 
+                {
+                    $row = $stmt->fetch(PDO::FETCH_ASSOC);
                 
-                $user_id = $row['id_user'];
+                    $user_id = $row['id_user'];
+    
+                    UserSession::init($user_id, $user_login, $cookie);
+                }
+                else
+                {
+                    foreach ($_COOKIE as $name => $value) {
+                        setcookie($name, '', time() - 3600, '/'); // Expire the cookie
+                        unset($_COOKIE[$name]); 
+                    }
 
+                    header("Location: login.php");
+                    exit();
+                }
 
-                UserSession::init($user_id, $user_login, $cookie);
             }
         }
         return true;
