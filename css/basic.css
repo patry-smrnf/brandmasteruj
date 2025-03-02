@@ -1,8 +1,8 @@
 html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow-x: hidden;
 }
 body
 {
@@ -14,16 +14,16 @@ body
 
 .header_top
 {
-    height: 10%;
+  height: 10%;
 
     background-color: #1a1c21;
     border-radius: 0px 0px 16px 16px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     transition: all 250ms;
 
-    display: flex;
-    justify-content: center; /* Centers items horizontally */
-    align-items: center;
+  display: flex;
+  justify-content: center; /* Centers items horizontally */
+  align-items: center;
 }
 
 .header_top:hover
@@ -59,25 +59,25 @@ body
 
 .header_button img 
 {
-    height: 25px;
-    width: 25px;
-    filter: invert(1); /* White icons */
+  height: 25px;
+  width: 25px;
+  filter: invert(1); /* White icons */
 }
 
 .container
 {
-    min-height: 90vh;
-    display: flex;
-    justify-content: center; /* Centers horizontally */
-    align-items: center;  
+  min-height: 90vh;
+  display: flex;
+  justify-content: center; /* Centers horizontally */
+  align-items: center;  
 }
 
 .main_body
 {
-    display: flex;  /* Enables flexbox */
-    flex-direction: row; /* Aligns columns side by side */
-    justify-content: center; /* Centers them horizontally */
-    align-items: center; /* Aligns items vertically */
+  display: flex;  /* Enables flexbox */
+  flex-direction: row; /* Aligns columns side by side */
+  justify-content: center; /* Centers them horizontally */
+  align-items: center; /* Aligns items vertically */
 
     background-color: #1a1c21;
     border-radius: 35px;
@@ -94,12 +94,12 @@ body
 }
 
 .column {
-    display: flex;
-    flex-direction: column;
-    width: 45%; /* Ensures two columns fit in a row */
-    max-width: 600px;
-    border-radius: 10px;
-    padding: 10px;
+  display: flex;
+  flex-direction: column;
+  width: 45%; /* Ensures two columns fit in a row */
+  max-width: 600px;
+  border-radius: 10px;
+  padding: 10px;
 }
 
 .content {
@@ -136,8 +136,8 @@ body
 
 .text_important
 {
-    text-shadow: 0px 0px 6px rgba(255, 255, 255, 0.685);
-    font-weight:normal;
+  text-shadow: 0px 0px 6px rgba(255, 255, 255, 0.685);
+  font-weight:normal;
 }
 
 hr.solid 
@@ -151,35 +151,35 @@ hr.solid
 /* width */
 ::-webkit-scrollbar 
 {
-    border-radius: 25px;
-    width: 10px;
+  border-radius: 25px;
+  width: 10px;
 }
-  
-  /* Track */
-  ::-webkit-scrollbar-track 
-  {
-    border-radius: 25px;
-    background: rgba(43, 43, 43, 0);
 
-  }
-  
-  /* Handle */
-  ::-webkit-scrollbar-thumb 
-  {
-    background: rgba(0, 0, 0, 0.815);
-    border-radius: 25px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    transition: all 250ms;
-  }
-  
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover 
-  {
-    transition: all 250ms;
-    background: rgba(0, 0, 0, 0.521);
-  }
+/* Track */
+::-webkit-scrollbar-track 
+{
+  border-radius: 25px;
+  background: rgba(43, 43, 43, 0);
+
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb 
+{
+  background: rgba(0, 0, 0, 0.815);
+  border-radius: 25px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: all 250ms;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover 
+{
+  transition: all 250ms;
+  background: rgba(0, 0, 0, 0.521);
+}
 
 
 .basic_button_a
@@ -199,27 +199,27 @@ hr.solid
 }
 
 @media (max-width: 768px) {
-    body {
-        flex-direction: column; 
-        align-items: center;
-    }
-    .container
-    {
-        min-height: 90vh;
-    }
-    .main_body
-    {
-        flex-direction: column; 
-        align-items: center;
+  body {
+      flex-direction: column; 
+      align-items: center;
+  }
+  .container
+  {
+      min-height: 90vh;
+  }
+  .main_body
+  {
+      flex-direction: column; 
+      align-items: center;
 
-    }
+  }
 
-    .column {
-        width: 90%; 
-    }
+  .column {
+      width: 90%; 
+  }
 
-    .content {
-        margin-top: 0px; 
-        flex: none; 
-    }
+  .content {
+      margin-top: 0px; 
+      flex: none; 
+  }
 }
