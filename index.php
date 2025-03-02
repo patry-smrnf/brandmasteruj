@@ -1,3 +1,42 @@
+<?php
+    require_once('scripts/php/web_functions.php');
+    require_once('scripts/php/security.php');
+
+    $status = is_logged();
+    if(!$status['logged'])
+    {
+        header("Location: login.php");
+        exit();
+    }
+
+    $year = date('Y');
+    $month = date('m');
+    $today = date('Y-m-d');
+
+    $my_month = fetchGet("http://localhost/brandmasteruj_v2/api/user/my_month.php?month=$month&year=$year");
+
+    $dzis_miejsce = "Brak";
+    $jutro_miejsce = "Brak";
+    $jutro_start;
+    $jutro_koniec;
+
+    $suma_godzin_przed_dzisiaj = 0;
+    $suma_godzin_po = 0;
+
+    foreach($my_month['akcje'] as $dni)
+    {
+        if($dni['date'] === $today) //szukanie co dzisiaj
+        {
+            if($dni['miejsce'] !== null) //jesli nie jest null
+            {
+                $id_sklepu = $dni['miejsce'];
+                $shop_data = fetchGet("http://localhost/brandmasteruj_newBackend/api/server/shop_by_id.php?shop_id=$id_sklepu");
+                $dzis_miejsce = $shop_data['adres'];
+            }
+        }
+    }
+?>
+
 <html>
     <head>
         <meta charset="UTF-8">
@@ -8,17 +47,17 @@
     </head>
     <body>
         <div class="header_top">
-            <a href="index.html">
+            <a href="index.php">
                 <button class="header_button active_button">
                     <img src="images/home-icon-silhouette.svg" alt="Location">
                 </button>
             </a>
-            <a href="calendar.html">
+            <a href="calendar.php">
                 <button class="header_button">
                     <img src="images/calendar-symbol.svg" alt="Location">
                 </button>
             </a>
-            <a href="map.html">
+            <a href="map.php">
                 <button class="header_button">
                     <img src="images/map-pin.svg" alt="Location">
                 </button>

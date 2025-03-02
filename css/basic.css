@@ -8,22 +8,17 @@ body
 {
     margin: 0;
     padding: 0;
-
-    background: linear-gradient(31deg, rgba(163,10,239,1) 36%, rgba(66,111,255,1) 100%);
+    background-color: #1e2025;
+    /*background: linear-gradient(31deg, rgba(163,10,239,1) 36%, rgba(66,111,255,1) 100%);*/
 }
-
-
-
 
 .header_top
 {
     height: 10%;
 
-    background: rgba(0, 0, 0, 0.2);
+    background-color: #1a1c21;
     border-radius: 0px 0px 16px 16px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
     transition: all 250ms;
 
     display: flex;
@@ -33,17 +28,14 @@ body
 
 .header_top:hover
 {
-    background: rgba(51, 51, 51, 0.22);
     box-shadow: 0 0px 40px rgba(0, 0, 0, 0.164);
 }
 
 .header_button
 {
-    background: rgba(96, 10, 255, 0.2);
+    background-color: #16181c;
     border-radius: 0px 0px 16px 16px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
     
     border: none;
     padding: 15px;
@@ -60,11 +52,9 @@ body
 
 .header_button active_button
 {
-    background: rgba(255, 255, 255, 0.2);
+    background-color: #181818;
     border-radius: 0px 0px 16px 16px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
 }
 
 .header_button img 
@@ -89,7 +79,7 @@ body
     justify-content: center; /* Centers them horizontally */
     align-items: center; /* Aligns items vertically */
 
-    background: rgba(0, 0, 0, 0.2);
+    background-color: #1a1c21;
     border-radius: 35px;
     width: 90%;
     height: 85%;
@@ -100,8 +90,7 @@ body
 
 .main_body:hover
 {
-    background: rgba(51, 51, 51, 0.22);
-    box-shadow: 0 0px 40px rgba(0, 0, 0, 0.11);
+    box-shadow: 0 0px 30px #0505054a;
 }
 
 .column {
@@ -115,9 +104,8 @@ body
 
 .content {
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 20px;
+    font-size: 15px;
     font-weight:lighter;
-    color: white;
     text-align: center;
 
     max-height: 500px;
@@ -125,27 +113,24 @@ body
     flex: 1; /* Allow content to grow equally */
     margin: 15px; /* Spacing between content blocks */
     padding: 20px; /* Padding inside the content */
+    color: #fefefe;
+    background-color: #16181c;
 
-    background: rgba(0, 0, 0, 0.2);
     border-radius: 25px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
     transition: all 0.3s ease-in-out;
 }
 
 .content:hover
 {
-    background: rgba(51, 51, 51, 0.2);
     box-shadow: 0 4px 25px rgba(0, 0, 0, 0.158);
-
 }
 
 .content h1
 {
-    font-size: 25px;
+    font-size: 20px;
     font-weight:bold;
-    color: white;
+    color: #fefefe;
     margin: 8px;
 }
 
@@ -157,7 +142,7 @@ body
 
 hr.solid 
 {
-    margin: 25px;
+    margin: 20px;
     background-color: #1f1f1f;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
@@ -199,11 +184,9 @@ hr.solid
 
 .basic_button_a
 {
-    background: rgba(34, 34, 34, 0.2);
+    background-color: #0c0c0c;
     border-radius: 15px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
 	display:inline-block;
 	cursor:pointer;
 	color:#ffffff;

@@ -11,9 +11,8 @@
     border: none;
     background: rgba(255, 255, 255, 0.521);
     border-radius: 15px;
+    font-weight:bold;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
     outline: none; /* Removes default focus border */
     transition: all 250ms;
 }
@@ -22,12 +21,11 @@ input[type="submit"]
 {
     margin-top: 0px;
     margin-bottom: 0px;
-    background: rgba(255, 255, 255, 0.11);
+    background-color: #16181c;
     border-radius: 15px;
+    border: 2px solid #f22447;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    color: #fff;
+    color: #f22447;
     font-weight: 600;
     cursor: pointer;
     transition: all 250ms;
@@ -35,7 +33,8 @@ input[type="submit"]
 
 input[type="submit"]:hover
 {
-    background: rgba(255, 255, 255, 0.144);
+    background: #f22447;
+    color: #fefefe;
     border-radius: 15px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
@@ -43,7 +42,7 @@ input[type="submit"]:hover
 .field input:focus 
 {
     outline: none; /* Removes default border */
-    box-shadow: 0 4px 10px rgba(142, 68, 173, 0.5); /* Adds a soft glow */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 .padding-bottom--24 
@@ -61,13 +60,12 @@ input[type="submit"]:hover
 .autocomplete input 
 {
     border: none;
-    background: rgba(255, 255, 255, 0.521);
+    background-color: #111111;
     padding: 10px;
     font-size: 16px;
     border-radius: 15px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+
     outline: none; /* Removes default focus border */
     transition: all 250ms;
 }
@@ -78,8 +76,7 @@ input[type="submit"]:hover
     background: rgba(255, 255, 255, 0.521);
     border-radius: 15px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+
     outline: none; /* Removes default focus border */
     transition: all 250ms;
 }
@@ -99,11 +96,10 @@ input[type="submit"]:hover
 .autocomplete-items div {
     padding: 10px;
     cursor: pointer;
-    background: rgba(61, 61, 61, 0.651);
+    background-color: #111111;
     border-radius: 15px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(1px);
-    -webkit-backdrop-filter: blur(1px);
+
     outline: none; /* Removes default focus border */
     transition: all 250ms;
     margin-bottom: 10px;

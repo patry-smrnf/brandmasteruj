@@ -1,7 +1,7 @@
 
 .calendar_data_box
 {
-    background: rgba(0, 0, 0, 0.2);
+    background-color: #111111;
     border-radius: 25px;
     padding-bottom: 10px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
@@ -10,7 +10,7 @@
 
 .calendar_data_box h2
 {
-    font-size: 13px;
+    font-size: 10px;
     font-weight:bold;
     color: white;
     padding-top: 10px;
@@ -23,19 +23,19 @@
     margin: 0px;
     padding-left: 20px;
     text-align: left;
-    font-size: 18px;
+    font-size: 13px;
     font-weight:normal;
     color: white;
 }
 
 .data_box_active 
 {
-    background: rgba(177, 135, 255, 0.267);
+    background-color: #111111;
 }
 
 .data_box_active h2
 {
-    font-size: 18px;
+    font-size: 13px;
     font-weight:bold;
     color: white;
     padding-top: 15px;
@@ -48,7 +48,7 @@
     margin: 0px;
     padding-left: 20px;
     text-align: left;
-    font-size: 23px;
+    font-size: 18px;
     font-weight:normal;
     color: white;
 }

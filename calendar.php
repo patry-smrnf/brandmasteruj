@@ -8,17 +8,17 @@
     </head>
     <body>
         <div class="header_top">
-            <a href="index.html">
+            <a href="index.php">
                 <button class="header_button active_button">
                     <img src="images/home-icon-silhouette.svg" alt="Location">
                 </button>
             </a>
-            <a href="calendar.html">
+            <a href="calendar.php">
                 <button class="header_button">
                     <img src="images/calendar-symbol.svg" alt="Location">
                 </button>
             </a>
-            <a href="map.html">
+            <a href="map.php">
                 <button class="header_button">
                     <img src="images/map-pin.svg" alt="Location">
                 </button>
@@ -40,7 +40,7 @@
                     </div>
                     <div class="content">
                         <h1>Dodaj / Zmien:</h1>
-                        <a class="basic_button_a" href="calendar_editor.html"> 
+                        <a class="basic_button_a" href="calendar_editor.php"> 
                             Kliknij tutaj
                         </a>
                     </div>
