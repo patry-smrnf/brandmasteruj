@@ -1,14 +1,14 @@
-.field input 
+
+.calendar_data_box
 {
     background-color: #111111;
     border-radius: 25px;
     padding-bottom: 10px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    outline: none; /* Removes default focus border */
-    transition: all 250ms;
+    margin-top: 15px;
 }
 
-input[type="submit"] 
+.calendar_data_box h2
 {
     font-size: 10px;
     font-weight:bold;
@@ -28,12 +28,12 @@ input[type="submit"]
     color: white;
 }
 
-input[type="submit"]:hover
+.data_box_active 
 {
     background-color: #111111;
 }
 
-.field input:focus 
+.data_box_active h2
 {
     font-size: 13px;
     font-weight:bold;
@@ -43,8 +43,7 @@ input[type="submit"]:hover
     text-align: left;
     margin: 0px;
 }
-
-.padding-bottom--24 
+.data_box_active h1
 {
     margin: 0px;
     padding-left: 20px;

@@ -1,17 +1,10 @@
 <?php
-<<<<<<< HEAD
 include("scripts/php/web_functions.php");
-=======
-include("./scripts/php/database.php");
-include("./scripts/php/security.php");
-
->>>>>>> 16d77664d16c2f5a0b7114fdfec7453fbe48e5c6
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') 
 {
     if (isset($_POST["login"]) && !empty($_POST["login"])) 
     {
-<<<<<<< HEAD
         $data = [
             "login" => $_POST['login']
         ];
@@ -31,50 +24,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
         }
     }
 }
-=======
-        $login = validate_creds($_POST["login"]);
-        try
-        {
-            $sql = "SELECT * FROM users WHERE login_user = :login_user";
-            $stmt = $pdo->prepare($sql);
-            $stmt -> bindParam(':login_user', $login);
-            $stmt -> execute();
-
-            if ($stmt->rowCount() === 1) 
-            {
-                $row = $stmt->fetch(PDO::FETCH_ASSOC);
-                if ($row["login_user"] === $login)
-                {
-                    if(auth_user($login))
-                    {
-                        header("Location: login.php?error=Blad w tworzeniu tokena");
-                        exit();
-                    }
-                    header("Location: index.php");
-                    exit();
-                }
-            }
-            else
-            {
-                header("Location: login.php?error=Bledny Login");
-                exit();
-            }
-        }
-        catch(Exception $e)
-        {
-            header("Location: login.php?error=$e");
-            exit();
-        }
-    }
-    else
-    {
-        header("Location: login.php?error=Pusty login");
-        exit();
-    }
-
-}
-
->>>>>>> 16d77664d16c2f5a0b7114fdfec7453fbe48e5c6
 ?>
 
 <html>
@@ -100,20 +49,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
                                 <input type="submit" name="submit" value="Zaloguj">
                             </div>
                         </form>
-<<<<<<< HEAD
                         <?php 
                         if(!empty($data['Error']))
                         {
                             echo '<a class="error_text">' . $data['Error'] . '</a>';
                         }
                         ?>
-=======
-                        <?php if(isset($_GET['error'])) 
-                        {
-                             ?>
-                        <a class="error_text"><?php echo $_GET['error']?></a>
-                        <?php }?>
->>>>>>> 16d77664d16c2f5a0b7114fdfec7453fbe48e5c6
                     </div>
                     <div class="content">
                         <h1>Stworz nowy login:</h1>
