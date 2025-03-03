@@ -9,24 +9,43 @@
         exit();
     }
 
-
     if ($_SERVER['REQUEST_METHOD'] === 'POST') 
     {
-        $data = [
-            "lokalizacja_punkt" => $_POST['lokalizacja_punkt'],
-            "punkt_godzina_start" => $_POST['punkt_godzina_start'],
-            "punkt_godzina_koniec" => $_POST['punkt_godzina_koniec'],
-            "akcja_data" => $_POST['punkt_data'],
-            "akcja" => $_POST['submit']
-        ];
-        echo $_COOKIE['auth_token'];
-        $response = sendPost("http://localhost/brandmasteruj_v2/api/user/save_event.php", $data, $_COOKIE['auth_token']);
-        var_dump($response);
+        if(isset($_POST['submit']))
+        {
+            $data = [
+                "lokalizacja_punkt" => $_POST['lokalizacja_punkt'],
+                "punkt_godzina_start" => $_POST['punkt_godzina_start'],
+                "punkt_godzina_koniec" => $_POST['punkt_godzina_koniec'],
+                "akcja_data" => $_POST['punkt_data'],
+                "akcja" => $_POST['submit']
+            ];
+            $response = sendPost("http://localhost/brandmasteruj_v2/api/user/save_event.php", $data, $_COOKIE['auth_token']);
+        }
+        if(isset($_POST['icloud_button']))
+        {
+            $data = [
+                "year_actual" => $_POST['year_actual'],
+                "month_actual" => $_POST['month_actual'],
+                "akcja" => $_POST['icloud_button']
+            ];
+            $response = sendPost("http://localhost/brandmasteruj_v2/api/user/save_icloud.php", $data, $_COOKIE['auth_token']);
+
+            $data_decoded = json_decode($response,true);
+            $path = $data_decoded['Succcess'];
+            if(!empty($path) && $path !== "")
+            {
+                header("Location: $path");
+
+            }
+
+
+        }
     }
 
     $year = date('Y');
     $month = date('m');
-    $today = date('Y-m-d');
+    $today = isset($_GET['active_day']) ? $_GET['active_day'] : date('Y-m-d');
 
     $my_month = fetchGet("http://localhost/brandmasteruj_v2/api/user/my_month.php?month=$month&year=$year");
     $dzis_miejsce = "Brak";
@@ -47,8 +66,10 @@
             }
         }
     }
-?>
 
+
+
+?>
 
 <html>
     <head>
@@ -83,7 +104,14 @@
                 <div class="column">
                     <div class="content">
                         <div class="calendar_picked_day_title" id="picked_day_title">
-                            <a id="punkt_data">Dzisiaj</a>
+                            <a id="punkt_data"><?php if(isset($_GET['active_day']))
+                            {
+                                echo "Wybrany przez ciebie punkt z mapy";
+                            }
+                            else
+                            {
+                                echo "Dzisiaj";
+                            } ?></a>
                         </div>
                         <div class="calendar_picked_day_events">
                             <form method="POST" action="calendar_editor.php">
@@ -111,9 +139,11 @@
                     <div class="content">
                         <h2>Zapisz kalendarz do icloud</h2>
                         <a>Tylko dla osob korzystajacych z macbook lub iphone</a><br><br>
-                        <form method="POST">
+                        <form method="POST" action="calendar_editor.php">
                             <div class="field padding-bottom--24">
-                                <input type="submit" name="submit" value="Zapisz">
+                                <input type="hidden" name="year_actual" value="<?php echo $year;?>">
+                                <input type="hidden" name="month_actual" value="<?php echo $month;?>">
+                                <input type="submit" name="icloud_button" value="Zapisz">
                             </div>
                         </form>
                     </div>

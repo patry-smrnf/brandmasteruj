@@ -48,8 +48,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
     include(__DIR__ . '/../scripts/database.php');
     include(__DIR__ . '/../scripts/security.php');
 
-
-
     $url = "http://localhost/brandmasteruj_v2/api/server/get_id.php";
 
     $cookies = [];
@@ -90,8 +88,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
             $data_from_user = json_decode($json, true);
 
             $lokalizacja_adres = validate_creds($data_from_user['lokalizacja_punkt']);
-            $start_akcji = validate_creds($data_from_user['punkt_godzina_start']);
-            $koniec_akcji = validate_creds($data_from_user['punkt_godzina_koniec']);
+            $start_akcji = format_hours(validate_creds($data_from_user['punkt_godzina_start']));
+            $koniec_akcji = format_hours(validate_creds($data_from_user['punkt_godzina_koniec']));
             $data_akcji = validate_creds($data_from_user['akcja_data']);
             $co_robimy = validate_creds($data_from_user['akcja']);
 
