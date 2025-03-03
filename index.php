@@ -12,16 +12,18 @@
     $year = date('Y');
     $month = date('m');
     $today = date('Y-m-d');
+    $tomorrow = date('Y-m-d', strtotime('+1 day'));
 
     $my_month = fetchGet("http://localhost/brandmasteruj_v2/api/user/my_month.php?month=$month&year=$year");
 
     $dzis_miejsce = "Brak";
     $jutro_miejsce = "Brak";
-    $jutro_start;
-    $jutro_koniec;
+    $jutro_start = 0;
+    $jutro_koniec = 0;
 
     $suma_godzin_przed_dzisiaj = 0;
     $suma_godzin_po = 0;
+
 
     foreach($my_month['akcje'] as $dni)
     {
@@ -30,8 +32,19 @@
             if($dni['miejsce'] !== null) //jesli nie jest null
             {
                 $id_sklepu = $dni['miejsce'];
-                $shop_data = fetchGet("http://localhost/brandmasteruj_newBackend/api/server/shop_by_id.php?shop_id=$id_sklepu");
+                $shop_data = fetchGet("http://localhost/brandmasteruj_v2/api/server/shop_by_id.php?shop_id=$id_sklepu");
                 $dzis_miejsce = $shop_data['adres'];
+            }
+        }
+        if($dni['date'] === $tomorrow) //szukanie co jutro
+        {
+            if($dni['miejsce'] !== null) //jesli nie jest null
+            {
+                $id_sklepu = $dni['miejsce'];
+                $shop_data = fetchGet("http://localhost/brandmasteruj_v2/api/server/shop_by_id.php?shop_id=$id_sklepu");
+                $jutro_miejsce = $shop_data['adres'];
+                $jutro_start = $dni['start'];
+                $jutro_koniec = $dni['koniec'];
             }
         }
     }
@@ -70,7 +83,7 @@
                         <h1>Twoj punkt dzisiaj:</h1>
                         <div class="calendar_data_box">
                             <h2>Nazwa</h2>
-                            <h1>Swietkorzyska 11</h1>
+                            <h1><?php echo $dzis_miejsce; ?></h1>
                         </div>
                         <h1>Jak tobie poszlo?</h1>
                         <form action="POST">
@@ -86,9 +99,9 @@
                         <h1>Twoj punkt na jutro:</h1>
                         <div class="calendar_data_box">
                             <h2>Punkt</h2>
-                            <h1>Swietkorzyska 11</h1>
+                            <h1><?php echo $jutro_miejsce; ?></h1>
                             <h2>Godziny</h2>
-                            <h1>16-21</h1>
+                            <h1><?php echo $jutro_start . ' - '. $jutro_koniec; ?></h1>
                             <h2>Srednia sprzedaz</h2>
                             <h1>16-21</h1>
                         </div>

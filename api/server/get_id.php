@@ -4,8 +4,8 @@
     include(__DIR__ . '/../scripts/security.php');
 
     header('Content-Type: application/json');
-
-    if(isset($_COOKIE['auth_token']) && !empty($_COOKIE['auth_token']))
+    
+    if(!empty($_COOKIE['auth_token']))
     {  
         $cookie = validate_creds($_COOKIE['auth_token']);
     

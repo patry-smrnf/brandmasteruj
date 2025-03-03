@@ -30,7 +30,7 @@ function fetchGet($url, $headers = [], $useCookies = true)
 
     return json_decode($response, true);
 }
-function sendPost($url, $data) {
+function sendPost($url, $data, $token="null") {
     $jsonData = json_encode($data); // Convert array to JSON
 
     $ch = curl_init($url);
@@ -39,7 +39,8 @@ function sendPost($url, $data) {
     curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonData);
     curl_setopt($ch, CURLOPT_HTTPHEADER, [
         'Content-Type: application/json',  // Tell the API we are sending JSON
-        'Content-Length: ' . strlen($jsonData)
+        'Content-Length: ' . strlen($jsonData),
+        'auth: '. $token
     ]);
 
     $response = curl_exec($ch);

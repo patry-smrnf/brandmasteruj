@@ -30,6 +30,7 @@ function set_editor(name, start, end, data)
     editor_panel_koniec.value = end;
     editor_panel_data_input.value = data;
 
+    console.log(formatDate(data));
     editor_panel_data.innerText = formatDate(data);
 
 }

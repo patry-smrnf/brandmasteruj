@@ -9,6 +9,21 @@
         exit();
     }
 
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') 
+    {
+        $data = [
+            "lokalizacja_punkt" => $_POST['lokalizacja_punkt'],
+            "punkt_godzina_start" => $_POST['punkt_godzina_start'],
+            "punkt_godzina_koniec" => $_POST['punkt_godzina_koniec'],
+            "akcja_data" => $_POST['punkt_data'],
+            "akcja" => $_POST['submit']
+        ];
+        echo $_COOKIE['auth_token'];
+        $response = sendPost("http://localhost/brandmasteruj_v2/api/user/save_event.php", $data, $_COOKIE['auth_token']);
+        var_dump($response);
+    }
+
     $year = date('Y');
     $month = date('m');
     $today = date('Y-m-d');
@@ -68,10 +83,10 @@
                 <div class="column">
                     <div class="content">
                         <div class="calendar_picked_day_title" id="picked_day_title">
-                            <a id="punkt_data"><?php echo $today; ?></a>
+                            <a id="punkt_data">Dzisiaj</a>
                         </div>
                         <div class="calendar_picked_day_events">
-                            <form method="POST">
+                            <form method="POST" action="calendar_editor.php">
                                 <h2>Punkt: </h2>
                                 <div class="autocomplete" style="width:300px;">
                                     <input id="myInput" type="text" name="lokalizacja_punkt" value="<?php echo $dzis_miejsce;?>" placeholder="Adres">
@@ -81,8 +96,13 @@
                                     <input type="text" value="<?php echo $dzis_start;?>" name="punkt_godzina_start" id="punkt_godzina_start">
                                     <input type="text" value="<?php echo $dzis_koniec;?>" name="punkt_godzina_koniec" id="punkt_godzina_koniec">
                                 </div>
+                                <input type="hidden" value="<?php echo $today;?>" name="punkt_data" id="data_input">
+
                                 <div class="field padding-bottom--24">
                                     <input type="submit" name="submit" value="Zmien">
+                                </div>
+                                <div class="field padding-bottom--24">
+                                    <input type="submit" name="submit" value="Usun">
                                 </div>
                             </form>
                             <script src="scripts/js/autocomplete_addresses.js"></script>
