@@ -10,7 +10,7 @@
         exit();
     }
 
-    $addresses = fetchGet("http://localhost/brandmasteruj_newBackend/api/server/shop_for_map.php");
+    $addresses = fetchGet("http://localhost/brandmasteruj_v2/api/server/shop_for_map.php");
 ?>
 
 
@@ -48,7 +48,7 @@
                 <div id="map" class="mapka"></div>
                 <script>
                     var map = L.map('map').setView([52.23758174766404,21.020029089624405], 13);
-                    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png', {
                         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                     }).addTo(map);
 
@@ -58,6 +58,8 @@
                     var popupContent = `
                         <div>
                             <strong>${loc.adres}</strong><br>
+                            <a>Twoje Sprzedaze: ${loc.ilosc_sprzedazy_twoja}</a><br>
+                            <a>Ogolne Sprzedaze: ${loc.ilosc_sprzedazy_ogolna}</a><br>
                             <a href="map_editor.php?id_miejsca=${loc.id_sklepu}" 
                             target="_blank" 
                             style="display:inline-block;margin-top:5px;padding:5px 10px;background:#007bff;color:#fff;text-decoration:none;border-radius:5px;">
@@ -65,7 +67,14 @@
                             </a>
                         </div>
                     `;
-                    L.marker([loc.lat, loc.lon])
+                    L.marker([loc.lat, loc.lon], {
+                        radius: 10, 
+                        fillColor: "red", // Change this to any color
+                        color: "black", // Outline color
+                        weight: 2,
+                        opacity: 0.9,
+                        fillOpacity: 0.3
+                    })
                         .addTo(map)
                         .bindPopup(popupContent);
                 });

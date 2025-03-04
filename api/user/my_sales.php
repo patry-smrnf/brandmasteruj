@@ -4,6 +4,7 @@
     include(__DIR__ . '/../scripts/database.php');
     include(__DIR__ . '/../scripts/security.php');
 
+    //sprawdzanie czy request zostal wyslany przez osobe ktora ma auth
     $url = "http://localhost/brandmasteruj_newBackend/api/server/get_id.php";
 
     $cookies = [];
@@ -33,30 +34,25 @@
         }
         else
         {
-            $data_to_send = [];
-
             $user_id = $data['id'];
+            $data_to_send = 
+            [
+                "sprzedaze" => []
+            ];
 
-            $sql = "SELECT * FROM `sklepy`";
-            $stmt = $pdo->prepare($sql);
-            $stmt->execute();
-
-            $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-            foreach($rows as $row)
+            if(isset($_GET['id_sklep']))
             {
-                $id_sklepu = $row['id_sklepu'];
-                $ilosc_sprzedazy_twoja = 0;
-                $ilosc_sprzedazy_ogolna = 0;
+                //znalezienie wszystkich akcji usera naszego w danym skelpie
+                $id_sklepu = validate_creds($_GET['id_sklep']);
 
-                //znajdywanie info dot ilosci sprzedazy POD KONKRETNEGO USER
                 $sql = "SELECT * FROM akcje WHERE id_user = :id_user AND id_sklepu = :id_sklepu";
                 $stmt = $pdo->prepare($sql);
                 $stmt -> bindParam(':id_user', $user_id);
                 $stmt -> bindParam(':id_sklepu', $id_sklepu);
                 $stmt -> execute();
                 $records = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
+                
+                //zbieranie wszystkich sprzedazy bedacych w akcjach ktore byly w konkretnym sklepie
                 foreach($records as $akcja)
                 {
                     $id_akcji = $akcja['id_akcji'];
@@ -68,42 +64,40 @@
                     $stmt -> execute();
                     $sprzedaze = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-                    $ilosc_sprzedazy_twoja = count($sprzedaze);
+                    foreach($sprzedaze as $sell)
+                    {
+                        $data_to_send["sprzedaze"][] = 
+                        [
+                            "id_sprzedazy" => $sell['id_sprzedazy'],
+                            "id_akcji" => $sell['id_akcji'],
+                            "typ_sprzedazy" => $sell['typ_sprzedazy'],
+                            "data_dodania" => $sell['godzina_dodania'],
+                        ];
+                    }
                 }
-
-                //znajdywanie info dot ilosci sprzedazy CALEGO ZESPOL
-                $sql = "SELECT * FROM akcje WHERE id_sklepu = :id_sklepu";
+            }
+            else
+            {
+                $sql = "SELECT * FROM sprzedaze WHERE id_user = :id_user";
                 $stmt = $pdo->prepare($sql);
-                $stmt -> bindParam(':id_sklepu', $id_sklepu);
+                $stmt -> bindParam(':id_user', $user_id);
                 $stmt -> execute();
                 $records = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-                foreach($records as $akcja)
+    
+                foreach($records as $sell)
                 {
-                    $id_akcji = $akcja['id_akcji'];
-
-                    $sql = "SELECT * FROM sprzedaze WHERE id_akcji = :id_akcji";
-                    $stmt = $pdo->prepare($sql);
-                    $stmt -> bindParam(':id_akcji', $id_akcji);
-                    $stmt -> execute();
-                    $sprzedaze = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-                    $ilosc_sprzedazy_ogolna = count($sprzedaze);
+                    $data_to_send["sprzedaze"][] = 
+                    [
+                        "id_sprzedazy" => $sell['id_sprzedazy'],
+                        "id_akcji" => $sell['id_akcji'],
+                        "typ_sprzedazy" => $sell['typ_sprzedazy'],
+                        "data_dodania" => $sell['godzina_dodania'],
+                    ];
                 }
-
-
-                $data_to_send[] = [
-                    "id_sklepu" => $row['id_sklepu'],
-                    "adres" => $row['adres'],
-                    "lat" => $row['lat'],
-                    "lon" => $row['lon'],
-                    "ilosc_sprzedazy_twoja" => $ilosc_sprzedazy_twoja,
-                    "ilosc_sprzedazy_ogolna" => $ilosc_sprzedazy_ogolna
-                ];
             }
             echo json_encode($data_to_send, JSON_PRETTY_PRINT);
-        }
 
+        }
     }
 
 

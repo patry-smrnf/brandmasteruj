@@ -79,10 +79,10 @@
                         {
                             $data_to_send["akcje"][] = 
                             [
+                                "id_akcji" => $akcja['id_akcji'],
                                 "miejsce" => $akcja['id_sklepu'],
                                 "start" => $akcja['start_godzina'],
                                 "koniec" => $akcja['koniec_godzina'],
-                                "sprzedaze" => $akcja['sprzedaze'],
                                 "date" => $dzien,
                             ];
                             $akcja_jest = true;
@@ -93,10 +93,10 @@
                     {
                             $data_to_send["akcje"][] = 
                             [
+                                "id_akcji" => null,
                                 "miejsce" => null,
                                 "start" => null,
                                 "koniec" => null,
-                                "sprzedaze" => null,
                                 "date" => $dzien,
                             ];
                     }

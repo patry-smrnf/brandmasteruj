@@ -12,18 +12,16 @@
     $year = date('Y');
     $month = date('m');
     $today = date('Y-m-d');
-    $tomorrow = date('Y-m-d', strtotime('+1 day'));
 
     $my_month = fetchGet("http://localhost/brandmasteruj_v2/api/user/my_month.php?month=$month&year=$year");
 
     $dzis_miejsce = "Brak";
-    $jutro_miejsce = "Brak";
-    $jutro_start = 0;
-    $jutro_koniec = 0;
+    $dzis_sprzedaze_suma = 0;
+    $dzis_akcja_id = 0;
+    $dzis_start = 0;
+    $dzis_koniec = 0;
 
-    $suma_godzin_przed_dzisiaj = 0;
-    $suma_godzin_po = 0;
-
+    $pozostale_dni = [];
 
     foreach($my_month['akcje'] as $dni)
     {
@@ -33,9 +31,34 @@
             {
                 $id_sklepu = $dni['miejsce'];
                 $shop_data = fetchGet("http://localhost/brandmasteruj_v2/api/server/shop_by_id.php?shop_id=$id_sklepu");
+                $sprzedaze_w_tym_sklep = fetchGet("http://localhost/brandmasteruj_v2/api/user/my_sales.php?id_sklep=$id_sklepu");
+                
+                $dzis_sprzedaze_suma = count($sprzedaze_w_tym_sklep['sprzedaze']);
                 $dzis_miejsce = $shop_data['adres'];
+                $dzis_akcja_id = $dni['id_akcji'];
+
+                $dzis_start = $dni['start'];
+                $dzis_koniec = $dni['koniec'];
             }
         }
+
+        if((strtotime($dni['date']) > strtotime($today)))
+        {
+            if($dni['miejsce'] !== null)
+            {
+                $id_sklepu = $dni['miejsce'];
+                $shop_data = fetchGet("http://localhost/brandmasteruj_v2/api/server/shop_by_id.php?shop_id=$id_sklepu");
+                $sprzedaze_w_tym_sklep = fetchGet("http://localhost/brandmasteruj_v2/api/user/my_sales.php?id_sklep=$id_sklepu");
+                
+                $pozostale_dni[] = [
+                    "adres" => $shop_data['adres'],
+                    "start" => $dni['start'],
+                    "koniec" => $dni['koniec'],
+                    "suma_sell" => count($sprzedaze_w_tym_sklep['sprzedaze'])
+                ];
+            }
+        }
+
     }
 ?>
 
@@ -72,15 +95,15 @@
                         <h1>Twoj punkt dzisiaj:</h1>
                         <div class="calendar_data_box data_box_active">
                             <h2>Punkt</h2>
-                            <h1>Swietkorzyska 11</h1>
+                            <h1><?php echo $dzis_miejsce; ?></h1>
                             <h2>Godziny</h2>
-                            <h1>16-21</h1>
-                            <h2>Srednia sprzedaz</h2>
-                            <h1>66</h1>
+                            <h1><?php echo $dzis_start . ' - ' . $dzis_koniec; ?></h1>
+                            <h2>Suma sprzedazy</h2>
+                            <h1><?php echo $dzis_sprzedaze_suma; ?></h1>
                         </div>
                     </div>
                     <div class="content">
-                        <h1>Dodaj / Zmien:</h1>
+                        <h1>Dodaj / Zmien  ( Kalendarz ):</h1>
                         <a class="basic_button_a" href="calendar_editor.php"> 
                             Kliknij tutaj
                         </a>
@@ -89,31 +112,21 @@
                 <div class="column">
                     <div class="content">
                         <h1>Reszta miesiaca:</h1>
+                        <?php
+                        foreach($pozostale_dni as $pozostala_akcja)
+                        {
+                            echo '                        
                         <div class="calendar_data_box">
                             <h2>Punkt</h2>
-                            <h1>Swietkorzyska 11</h1>
+                            <h1>'.$pozostala_akcja['adres'].'</h1>
                             <h2>Godziny</h2>
-                            <h1>16-21</h1>
+                            <h1>'.$pozostala_akcja['start']. ' - ' . $pozostala_akcja['koniec'] .'</h1>
                             <h2>Srednia sprzedaz</h2>
-                            <h1>16-21</h1>
-                        </div>
-                        <div class="calendar_data_box">
-                            <h2>Punkt</h2>
-                            <h1>Swietkorzyska 11</h1>
-                            <h2>Godziny</h2>
-                            <h1>16-21</h1>
-                            <h2>Srednia sprzedaz</h2>
-                            <h1>16-21</h1>
-                        </div>
-                        <div class="calendar_data_box">
-                            <h2>Punkt</h2>
-                            <h1>Swietkorzyska 11</h1>
-                            <h2>Godziny</h2>
-                            <h1>16-21</h1>
-                            <h2>Srednia sprzedaz</h2>
-                            <h1>16-21</h1>
-                        </div>
+                            <h1>'.$pozostala_akcja['suma_sell'].'</h1>
+                        </div>';
+                        }
 
+                        ?>
                     </div>
                 </div>
             </div>
