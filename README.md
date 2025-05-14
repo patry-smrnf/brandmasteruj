@@ -1,1 +1,1 @@
-jedna z pierwszych aplikacji web-owych, napisana w pelni bez zadnych frameworkow
+jedna z pierwszych moich aplikacji web-owych, napisana w pelni bez zadnych frameworkow
